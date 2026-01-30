@@ -1,5 +1,10 @@
 # Peguix AI — Offline AI Web Application
 
+<a>
+    <img src="./logo.png" width="55" />
+</a>
+
+
 Peguix AI is a **fully offline AI web application** built using **React (frontend)** and **Node.js (backend)**, powered locally by **Ollama** with **LLaMA 3.2 Vision**.  
 It focuses on **privacy, speed, and local inference** without relying on cloud APIs.
 
