@@ -1,7 +1,7 @@
 # Peguix AI — Offline AI Web Application
 
 <a>
-    <img src="./logo.png" width="55" />
+    <img src="frontend/src/components/assets/logo.png" width="55" />
 </a>
 
 
