@@ -10,6 +10,34 @@ It focuses on **privacy, speed, and local inference** without relying on cloud A
 
 ---
 
+## 🌐 Frontend Demo (UI Preview Only)
+
+A **frontend-only demo** is available to showcase the UI and layout of **Peguix AI**:
+
+👉 **Demo Link:** https://peguix-ai.netlify.app/
+
+---
+
+## ⚠️ Demo Limitations
+
+- This demo shows **UI only**
+- ❌ AI chat, voice, and vision **will NOT work**
+- ❌ Backend and Ollama are **not connected**
+- ❌ No local inference in the demo
+
+---
+
+## ✅ Purpose of Demo
+
+- UI/UX preview
+- Design reference
+- Navigation & layout showcase
+
+---
+
+For **full functionality**, the project must be run **locally with Ollama installed**.
+
+
 ## 🚀 Features
 
 - 💬 Offline AI Chat (local inference)
