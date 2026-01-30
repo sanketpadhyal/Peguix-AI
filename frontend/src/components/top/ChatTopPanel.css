@@ -1,0 +1,212 @@
+.yes-loader {
+  display: inline-block;
+  margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid #fff;
+  border-top: 2.5px solid #e74c3c;
+  border-radius: 50%;
+  animation: spinYesLoader 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spinYesLoader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* =========================
+   SLIDE DOWN CONFIRM PANEL
+========================= */
+
+.chat-confirm-panel {
+  position: absolute;
+  top: 69px;
+  left: 0;
+  width: 100%;
+  background: rgba(20, 20, 20, 0.98);
+  border-bottom: 1px solid #333;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  z-index: 2100;
+  animation: slideDownConfirm 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes slideDownConfirm {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.chat-confirm-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 0 14px 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.chat-confirm-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 18px;
+}
+
+.chat-confirm-actions .yes-btn,
+.chat-confirm-actions .no-btn {
+  padding: 6px 22px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.chat-confirm-actions .yes-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+.chat-confirm-actions .yes-btn:hover {
+  background: #c0392b;
+}
+.chat-confirm-actions .no-btn {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+.chat-confirm-actions .no-btn:hover {
+  background: #333;
+}
+/* =========================
+   🔥 CHAT TOP PANEL — PC ONLY
+========================= */
+
+.chat-top-panel {
+  position: fixed;
+  top: 0;
+
+  /* 🔥 ALIGN WITH CHAT COLUMN (NOT SIDEBAR) */
+  left: 58.86%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1210px;          /* same as chat wrapper */
+
+  height: 69px;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #101010;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px double rgba(255, 255, 255, 0.202);
+
+  z-index: 2000;
+}
+
+/* =========================
+   LEFT — MODEL INFO
+========================= */
+
+.chat-top-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f5;
+  letter-spacing: 0.2px;
+}
+
+.chat-top-left svg {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* MODEL BADGE */
+.model-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: #ddd;
+  opacity: 0.9;
+}
+
+/* =========================
+   RIGHT — ACTION BUTTONS
+========================= */
+
+.chat-top-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5px; /* reduced gap even further for 3x effect */
+}
+
+
+/* Professional Delete Chat Button */
+
+/* White/Black Theme Delete Chat Button */
+.chat-top-right .delete-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffffbb;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 7px 18px 7px 14px;
+  border: 1.5px solid #222;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.16s;
+  outline: none;
+}
+.chat-top-right .delete-chat-btn svg {
+  font-size: 17px;
+  margin-right: 2px;
+  color: #fd1900;
+  transition: color 0.18s;
+}
+
+.chat-top-right button:hover {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.chat-top-right button:active {
+  transform: scale(0.92);
+}
+
+/* =========================
+   CHAT OFFSET (IMPORTANT)
+========================= */
+
+.chatgpt-chat-wrapper {
+  padding-top: 56px;
+}
+
+/* =========================
+   ❌ MOBILE — HIDE COMPLETELY
+========================= */
+
+@media (max-width: 900px) {
+  .chat-top-panel {
+    display: none;
+  }
+}

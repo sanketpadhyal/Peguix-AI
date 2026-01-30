@@ -1,0 +1,971 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+/* PAGE */
+.chatgpt-page {
+  min-height: 100dvh;
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.chatgpt-chat-wrapper {
+  width: 100%;
+  max-width: 820px;
+  height: 100dvh;
+
+  /* ❌ NO top padding here */
+  padding-top: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.chatgpt-messages {
+  padding-top: 32px;   /* 👈 small, clean lift */
+}
+
+
+@keyframes chatEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chatgpt-messages {
+  flex: 1;
+
+  padding-top: 28px;   /* 👌 slightly down, premium */
+
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 90px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  overflow-y: auto;
+}
+@media (max-width: 768px) {
+  .chatgpt-messages {
+    padding-top: 66px;   /* 👌 starting msg slightly lower */
+  }
+}
+
+.uptime-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  margin-top: 2px;     /* 🔥 keeps dot centered */
+  animation: uptimePulse 1.3s infinite ease-in-out;
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 18px rgba(255, 255, 255, 0.5);
+}
+
+
+.chatgpt-messages::-webkit-scrollbar {
+  display: none;
+}
+
+/* ROWS */
+.chatgpt-row {
+  width: 100%;
+  display: flex;
+}
+
+.chatgpt-row.user {
+  justify-content: flex-end;
+}
+
+.chatgpt-row.ai {
+  justify-content: flex-start;
+}
+
+/* BUBBLES */
+.chatgpt-bubble {
+  max-width: 90%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  background: #1e1e1e;
+  color: #f1f1f1;
+}
+
+/* INPUT WRAPPER */
+.chatgpt-input-wrapper {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(transparent, #0f0f0f 40%);
+  padding-bottom: 8px;
+}
+
+/* INPUT BAR */
+.chatgpt-input-bar {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1e1e1e;
+  border-radius: 36px;
+  border: 1px solid #2b2b2b;
+}
+
+/* INPUT */
+.chatgpt-input-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 13.5px;
+}
+
+/* ICON BUTTONS */
+.icon-btn {
+  background: #252525b5;
+  border: 0.2px solid rgba(255, 255, 255, 0.887);
+  color: #fafafa;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn svg {
+  font-size: 16px;
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* SEND BUTTON */
+.send-btn {
+  background: #ffffff;
+  border: none;
+  color: black;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.send-btn svg {
+  font-size: 16px;
+}
+
+
+.chatgpt-messages {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
+  .chatgpt-bubble {
+    font-size: 12.5px;
+    padding: 9px 12px;
+    line-height: 1.45;
+  }
+
+  /* 👇 SHIFT POSITIONS */
+  .chatgpt-row.user .chatgpt-bubble {
+    margin-right: 12px; /* move user left */
+  }
+
+  .chatgpt-row.ai .chatgpt-bubble {
+    margin-left: 12px; /* move AI right */
+  }
+
+  .chatgpt-input-bar {
+    max-width: 360px;
+    padding: 8px 10px;
+  }
+
+  .chatgpt-input-bar input {
+    font-size: 12px;
+  }
+
+  .icon-btn,
+  .send-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-btn svg,
+  .send-btn svg {
+    font-size: 14px;
+  }
+
+
+/* =========================
+   🔥 UPTIME BOT BUBBLE — WHITE + BLACK MODE
+========================= */
+
+.uptime-bot {
+  background: #1e1e1e;          /* same as normal bubble */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 56px;
+  min-height: 38px;
+
+  padding: 10px 16px;
+  border-radius: 14px;
+}
+
+
+/* ⚪ SINGLE BOT DOT — WHITE CORE + BLACK HALO */
+.uptime-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: uptimePulse 1.3s infinite ease-in-out;
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 18px rgba(255, 255, 255, 0.5),
+}
+
+/* 🔥 LUXURY BREATHING ANIMATION */
+@keyframes uptimePulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+}
+
+/* IMAGE PREVIEW ABOVE INPUT */
+.image-preview-bar {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e1e1e;
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+}
+
+.image-preview-bar img {
+  max-width: 80px;
+  max-height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.image-preview-bar button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chat-image {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+
+  border-radius: 10px;
+  display: block;
+
+  margin-top: 6px;
+  margin-bottom: 6px;
+
+  object-fit: contain;
+}
+
+.chatgpt-bubble {
+  overflow: hidden;   /* 🔥 THIS IS KEY */
+}
+
+.chat-bubble-wrapper {
+  max-width: 85%;
+}
+
+.chat-image {
+  max-height: 320px;
+}
+
+.stop-btn {
+  background: #ff3b3b;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.stop-btn:hover {
+  background: #ff1f1f;
+}
+
+.stop-btn:active {
+  transform: scale(0.9);
+}
+
+.normal-text {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #f1f1f1;
+}
+
+/* =========================
+   ✨ AI RICH TEXT SUPPORT
+========================= */
+
+.chatgpt-bubble .normal-text b,
+.chatgpt-bubble .normal-text strong {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.chatgpt-bubble .normal-text i,
+.chatgpt-bubble .normal-text em {
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.chatgpt-bubble .normal-text u {
+  text-decoration: underline;
+}
+
+.chatgpt-bubble .normal-text a {
+  color: #60a5fa;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.chatgpt-bubble .normal-text a:hover {
+  color: #93c5fd;
+}
+
+.chatgpt-bubble .normal-text h1,
+.chatgpt-bubble .normal-text h2,
+.chatgpt-bubble .normal-text h3 {
+  font-weight: 600;
+  margin: 12px 0 6px;
+  line-height: 1.35;
+}
+
+.chatgpt-bubble .normal-text h1 { font-size: 18px; }
+.chatgpt-bubble .normal-text h2 { font-size: 16.5px; }
+.chatgpt-bubble .normal-text h3 { font-size: 15.5px; }
+
+.chatgpt-bubble .normal-text ul,
+.chatgpt-bubble .normal-text ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.chatgpt-bubble .normal-text li {
+  margin: 6px 0;
+  line-height: 1.55;
+}
+
+.chatgpt-bubble .normal-text code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  background: rgba(255,255,255,0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+
+
+
+/* CODE BLOCK PANEL */
+.code-block-wrapper {
+  position: relative;
+  margin-top: 10px;
+  background: #0b0b0b;
+  border: 1px solid #2b2b2b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* LANGUAGE HEADER */
+.code-lang-header {
+  background: #141414;
+  border-bottom: 1px solid #2b2b2b;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #9cdcfe;
+  text-transform: lowercase;
+}
+
+/* CODE AREA */
+.code-block {
+  padding: 12px 14px;
+  font-size: 13px;
+  font-family: "JetBrains Mono", monospace;
+  color: #d4d4d4;
+  background: transparent;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+/* COPY BUTTON */
+.code-copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #1e1e1e;
+  border: 1px solid #2b2b2b;
+  color: #ccc;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.code-block-wrapper:hover .code-copy-btn {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  background: #2a2a2a;
+  color: white;
+}
+.mic-on {
+  color: red;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.chat-logo {
+  width: 64px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* =========================
+   🎨 USER ACCENTS
+========================= */
+
+.accent-green .chatgpt-bubble { background: green; }
+.accent-blue  .chatgpt-bubble { background: #3b82f6; color: white; }
+.accent-yellow.chatgpt-row.user .chatgpt-bubble { background: #eab308; color: black; }
+.accent-dark  .chatgpt-bubble { background: #2a2a2a; color: white; }
+
+/* =========================
+   🤖 AI ACCENTS
+========================= */
+
+.accent-ai-green .chatgpt-bubble { background: #14532d; color: #dcfce7; }
+.accent-ai-blue  .chatgpt-bubble { background: #1e3a8a; color: #dbeafe; }
+.accent-ai-yellow .chatgpt-bubble { background: #78350f; color: #fef9c3; }
+.accent-ai-dark  .chatgpt-bubble { background: #1e1e1e; color: #f1f1f1; }
+.chat-date-separator {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin: 18px 0 10px;
+  position: relative;
+}
+
+.chat-date-separator::before,
+.chat-date-separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+
+.chat-date-separator::before { left: 0; }
+.chat-date-separator::after { right: 0; }
+/* =========================
+   🔥 AI ACTION PANEL (COPY + SHARE)
+========================= */
+
+.ai-action-panel {
+  margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  padding-left: 6px;
+}
+
+.ai-action-btn {
+  background: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  color: #ccc;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-action-btn:hover {
+  background: #2a2a2a;
+  color: white;
+  transform: scale(1.05);
+}
+
+.ai-action-btn:active {
+  transform: scale(0.92);
+}
+
+/* 🔒 FIX MESSAGE SHIFT BUG */
+.chat-bubble-wrapper {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* keep user bubbles aligned right */
+.chatgpt-row.user .chat-bubble-wrapper {
+  align-items: flex-end;
+}
+
+/* 🔥 AUTO GROW INPUT LIKE CHATGPT */
+.chat-input-textarea {
+  flex: 1;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 13.5px;
+  line-height: 1.45;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 6px 4px;
+  scrollbar-width: thin;
+}
+
+/* smooth scrollbar like ChatGPT */
+.chat-input-textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-input-textarea::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+}
+.chat-bubble-wrapper {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* keep user bubbles aligned right */
+.chatgpt-row.user .chat-bubble-wrapper {
+  align-items: flex-end;
+}
+
+.chat-input-textarea {
+  flex: 1;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 13.5px;
+  line-height: 1.45;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 6px 4px;
+  scrollbar-width: thin;
+
+  /* 🔥 THIS LINE MAKES IT ANIMATE */
+  transition: height 0.18s ease;
+}
+
+/* =========================
+   💻 PC ONLY — WIDER INPUT BAR
+========================= */
+
+@media (min-width: 900px) {
+
+  .chatgpt-input-bar {
+    max-width: 640px;     /* 🔥 wider on desktop */
+  }
+
+  .chatgpt-input-wrapper {
+    max-width: 900px;    /* 🔥 allow more space */
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  .chatgpt-input-bar {
+    max-width: 860px;
+  }
+
+  .chatgpt-input-wrapper {
+    max-width: 1000px;
+  }
+
+}
+
+/* =========================
+   💻 PC ONLY — SHIFT ENTIRE HOME RIGHT
+========================= */
+
+@media (min-width: 900px) {
+
+  .chatgpt-page {
+    justify-content: flex-start;   /* stop hard center */
+  }
+
+  .chatgpt-chat-wrapper {
+    margin-left: calc(50vw - 410px + 80px);
+  }
+
+}
+/* =========================
+   🔥 CHATGPT TOP HEADER BAR
+========================= */
+
+.chat-top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 56px;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #1b1b1b;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  z-index: 3000;
+}
+
+/* LEFT MODEL NAME */
+.chat-top-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-top-left svg {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* RIGHT ACTIONS */
+.chat-top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.top-icon-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.top-icon-btn span {
+  font-size: 14px;
+}
+
+.top-icon-btn.dots {
+  padding: 6px 8px;
+  font-size: 18px;
+}
+
+/* =========================
+   🔥 AI STATUS UNDER DOT
+========================= */
+
+.ai-typing-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* 🔥 lock center */
+  gap: 6px;
+}
+
+/* STATUS TEXT BASE */
+.ai-status-text {
+  font-size: 12.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ccc;
+  opacity: 0.9;
+  transition: all 0.25s ease;
+}
+
+/* 🔥 NOTED — POP FLASH */
+.status-noted {
+  animation: notedPop 0.8s ease;
+  color: #e0e0e0;
+}
+
+@keyframes notedPop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* 🧠 THINKING — BREATH GLOW */
+.status-thinking {
+  animation: thinkingBreath 1.4s infinite ease-in-out;
+  color: white;
+}
+
+@keyframes thinkingBreath {
+  0%   { opacity: 0.6; transform: scale(0.95); }
+  50%  { opacity: 1;   transform: scale(1.1); }
+  100% { opacity: 0.6; transform: scale(0.95); }
+}
+
+/* 🔥 STABLE TYPING BUBBLE — NO JUMP */
+.uptime-bot {
+  min-width: 64px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 14px;
+}
+
+/* center dot properly */
+.ai-typing-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+}
+/* 🔥 STATUS ROW (ICON + TEXT) */
+.ai-status-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ccc;
+  opacity: 0.9;
+  transition: all 0.25s ease;
+}
+
+/* icon animation */
+.ai-status-text svg {
+  font-size: 14px;
+  animation: statusIconPulse 1.2s infinite ease-in-out;
+  opacity: 0.85;
+}
+
+/* subtle icon breathing */
+@keyframes statusIconPulse {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  50%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+/* 📝 NOTED — SOFT FLASH */
+.status-noted {
+  color: #e5e5e5;
+  animation: notedPop 2.2s ease;
+}
+
+@keyframes notedPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  70%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* 🧠 THINKING — BREATHING GLOW */
+.status-thinking {
+  color: #ffffff;
+  animation: thinkingGlow 1.4s infinite ease-in-out;
+}
+
+@keyframes thinkingGlow {
+  0%   { opacity: 0.5; transform: scale(0.95); }
+  50%  { opacity: 1;   transform: scale(1.08); }
+  100% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/* 🔥 TEMPORARY: HIDE UPTIME DOT EVERYWHERE */
+.uptime-dot {
+  display: none !important;
+}
+
+/* =========================
+   🔍 MOBILE SLIGHT ZOOM (PREMIUM FEEL)
+========================= */
+
+@media (max-width: 768px) {
+
+  .chatgpt-chat-wrapper {
+    transform: scale(1.05);          /* 🔥 slight zoom */
+    transform-origin: top center;   /* keep aligned */
+  }
+
+}
+@media (max-width: 768px) {
+
+  /* CHAT MESSAGES */
+  .chatgpt-bubble {
+    font-size: 13.6px;      /* 🔥 was 12.5 → clearer */
+    padding: 9px 12px;
+    line-height: 1.5;      /* better readability */
+  }
+
+  /* INPUT TEXT */
+  .chatgpt-input-bar input {
+    font-size: 13px;       /* 🔥 was 12 → more natural */
+  }
+
+  /* NORMAL TEXT BLOCK */
+  .normal-text {
+    font-size: 13.6px;     /* message body */
+    line-height: 1.5;
+  }
+
+  /* CODE BLOCK TEXT */
+  .code-block {
+    font-size: 13.2px;     /* code easier to read */
+  }
+
+  /* STATUS TEXT (Noted / Thinking) */
+  .ai-status-text {
+    font-size: 13px;      /* slightly bigger */
+  }
+
+  /* HEADER MODEL NAME */
+  .chat-top-left {
+    font-size: 16px;
+  }
+
+  /* DATE SEPARATOR */
+  .chat-date-separator {
+    font-size: 13px;
+  }
+
+}
+
+/* =========================
+   💻 PC ONLY — START CHAT SLIGHTLY LOWER
+========================= */
+
+@media (min-width: 900px) {
+  .chatgpt-messages {
+    padding-top: 22px;   /* 🔥 subtle, premium spacing */
+  }
+}
+
+/* =========================
+   📱 MOBILE — SLIGHTLY NARROWER INPUT BAR
+========================= */
+
+@media (max-width: 768px) {
+
+  .chatgpt-input-wrapper {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .chatgpt-input-bar {
+    width: 100%;
+    max-width: 340px;   /* 👈 was 360 / 420 → tighter */
+  }
+
+}
+@media (min-width: 900px) {
+
+  .chatgpt-input-wrapper {
+    transform: translateX(calc(-50% + 92px)); /* 👈 slightly more right */
+  }
+
+}
+
+.ai-typing-wrapper {
+  min-height: 48px;
+}

@@ -1,0 +1,503 @@
+/* =========================
+   ⚙️ SETTINGS PAGE — DARK PREMIUM UI
+========================= */
+
+/* 🔥 MOBILE-FIRST BASE (NO JUMP ON LOAD) */
+.settings-page {
+  width: 100vw;
+  min-height: 100vh;
+  background: #000;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 16px;
+
+  /* 🔥 DROP BELOW NAVBAR PERMANENTLY */
+  padding-top: calc(95px + env(safe-area-inset-top));
+
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================
+   🔥 SETTINGS CARD
+========================= */
+
+.settings-card {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 28px 22px;
+  border-radius: 16px;
+
+  background: rgba(24, 23, 23, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.95),
+    inset 0 0 1px rgba(255,255,255,0.18);
+
+  /* 🔥 SAFE MOBILE ENTRY */
+  animation: mobileSettingsEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* =========================
+   🔥 MOBILE ENTRY ANIMATION (NO JUMP)
+========================= */
+
+@keyframes mobileSettingsEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   🏷️ TITLE — BOLD PREMIUM
+========================= */
+
+.settings-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.6px;
+}
+
+/* =========================
+   🔥 ACTION BUTTONS
+========================= */
+
+.settings-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.settings-btn {
+  padding: 13px 20px;
+  border-radius: 999px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Hover */
+.settings-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(255,255,255,0.08);
+}
+
+/* Active */
+.settings-btn:active {
+  transform: scale(0.95);
+}
+
+/* =========================
+   🔥 DANGER BUTTON
+========================= */
+
+.settings-btn.danger {
+  background: rgba(231, 76, 60, 0.18);
+  border-color: rgba(231, 76, 60, 0.45);
+  color: #ff9a90;
+}
+
+.settings-btn.danger:hover {
+  background: rgba(231, 76, 60, 0.28);
+  box-shadow: 0 0 24px rgba(231, 76, 60, 0.35);
+}
+
+/* 🔥 DANGER OUTLINE */
+
+.settings-btn.danger-outline {
+  background: transparent;
+  border: 1px solid rgba(231, 76, 60, 0.45);
+  color: #ff9a90;
+}
+
+.settings-btn.danger-outline:hover {
+  background: rgba(231, 76, 60, 0.2);
+  box-shadow: 0 0 22px rgba(231, 76, 60, 0.3);
+}
+
+/* =========================
+   🧠 INFO TEXT
+========================= */
+
+.settings-info p {
+  color: #bcbcbc;
+  font-size: 12.5px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.settings-info b {
+  color: white;
+  font-weight: 600;
+}
+
+.settings-note {
+  margin-top: 18px;
+  color: #888;
+  font-size: 11.5px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* =========================
+   💻 DESKTOP OPTIMIZATION (CENTER ONLY HERE)
+========================= */
+
+@media (min-width: 768px) {
+
+  .settings-page {
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .settings-card {
+    max-width: 480px;
+    padding: 42px 40px;
+    border-radius: 18px;
+
+    /* 🔥 DESKTOP ENTRY */
+    animation: desktopSettingsEnter 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes desktopSettingsEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(25px) scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .settings-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .settings-btn {
+    font-size: 15px;
+    padding: 16px 24px;
+  }
+
+  .settings-info p {
+    font-size: 14px;
+  }
+}
+/* =========================
+   🏷️ TITLE — GLASS STRIP SPLIT STYLE
+========================= */
+
+.settings-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 36px;
+  letter-spacing: 1px;
+}
+
+/* BIG FIRST LETTER — OUTSIDE STRONG */
+.title-big {
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+
+  margin-right: 10px;
+  line-height: 1;
+}
+
+/* STRIP STYLE BOX — CONTROL PANEL LOOK */
+.title-box {
+  padding: 10px 26px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  border-radius: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.8),
+    inset 0 0 0.5px rgba(255,255,255,0.2);
+}
+
+/* MOBILE TUNING */
+@media (max-width: 600px) {
+
+  .title-big {
+    font-size: 34px;
+  }
+
+  .title-box {
+    font-size: 18px;
+    padding: 8px 20px;
+  }
+}
+/* QUICK NOTE UNDER BUTTON */
+.settings-quick-note {
+  margin-top: -6px;
+  margin-left: 6px;
+
+  font-size: 12px;
+  color: #9a9a9a;
+  opacity: 0.9;
+
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+
+  user-select: none;
+}
+
+/* =========================
+   📝 SUB NOTE BELOW TITLE — PREMIUM SYSTEM STYLE
+========================= */
+
+.settings-sub-note {
+  margin-top: -8px;
+  margin-bottom: 34px;
+
+  padding: 10px 16px;
+
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13.5px;
+  font-weight: 400;
+  text-align: center;
+
+  letter-spacing: 0.35px;
+  line-height: 1.55;
+
+  max-width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* 🔥 PREMIUM PANEL FEEL */
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+
+  /* 🔥 SOFT INNER LINE (SYSTEM LOOK) */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* 🔥 VERY SUBTLE GLOW */
+  box-shadow:
+    inset 0 0 0.5px rgba(255, 255, 255, 0.25);
+}
+
+.btn-loader-inline {
+  width: 16px;
+  height: 16px;
+
+  margin-left: 12px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: rgba(255, 255, 255, 0.95);
+
+  animation: spinPerfect 0.65s linear infinite;
+}
+
+@keyframes spinPerfect {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.settings-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.settings-alert {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 24px;
+  border-radius: 999px;
+
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.9),
+    inset 0 0 0.5px rgba(255,255,255,0.25);
+
+  animation:
+    alertEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    alertPulse 1.8s ease-in-out infinite 0.6s;
+
+  z-index: 9999;
+}
+
+@keyframes alertEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(28px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes alertPulse {
+  0% {
+    box-shadow:
+      0 10px 35px rgba(0, 0, 0, 0.9),
+      inset 0 0 0.5px rgba(255,255,255,0.25);
+  }
+  50% {
+    box-shadow:
+      0 12px 45px rgba(0, 0, 0, 1),
+      inset 0 0 1px rgba(255,255,255,0.35);
+  }
+  100% {
+    box-shadow:
+      0 10px 35px rgba(0, 0, 0, 0.9),
+      inset 0 0 0.5px rgba(255,255,255,0.25);
+  }
+}
+
+.settings-alert.hide {
+  animation: alertExit 0.35s ease forwards;
+}
+
+@keyframes alertExit {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.96);
+  }
+}
+/* =========================
+   🎨 ACCENT PICKER PANEL
+========================= */
+
+.settings-accent {
+  margin-bottom: 28px;
+  padding: 14px 16px;
+
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+
+  text-align: center;
+}
+
+.settings-accent-title {
+  font-size: 13px;
+  color: #bdbdbd;
+  margin-bottom: 12px;
+  letter-spacing: 0.4px;
+}
+
+/* COLOR BUTTON ROW */
+.accent-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* BASE COLOR BUTTON */
+.accent-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.accent-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(255,255,255,0.35);
+}
+
+/* COLORS */
+.accent-btn.green  { background: green; }
+.accent-btn.blue   { background: #3b82f6; }
+.accent-btn.yellow { background: #facc15; }
+.accent-btn.dark   { background: #444; }
+.accent-btn.selected {
+  outline: 3px solid white;
+  box-shadow: 0 0 16px rgba(255,255,255,0.7);
+  transform: scale(1.2);
+}
+/* =========================
+   🔥 SETTINGS PAGE SCROLL ENABLE (MOBILE + SAFARI FIX)
+========================= */
+
+.settings-page {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}

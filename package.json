@@ -1,0 +1,12 @@
+{
+  "name": "offline-ai-react",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "multer": "^2.0.2",
+    "node-fetch": "^3.3.2",
+    "react-icons": "^5.5.0"
+  }
+}

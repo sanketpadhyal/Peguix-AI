@@ -1,0 +1,816 @@
+@media (max-width: 768px) {
+  .sp-overlay {
+    display: none !important;
+  }
+}
+
+.sp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spFadeIn 0.18s ease-out;
+}
+
+@keyframes spFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sp-modal {
+  width: 900px;
+  height: 540px;
+  background: linear-gradient(180deg, #1f1f1f, #1a1a1a);
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 50px 140px rgba(0,0,0,0.9),
+    inset 0 0 0.5px rgba(255,255,255,0.2);
+  animation: spScaleIn 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes spScaleIn {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.sp-close {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  z-index: 10;
+}
+
+.sp-close:hover {
+  background: rgba(255,255,255,0.18);
+  transform: rotate(90deg);
+}
+
+/* LEFT SIDEBAR – pushed DOWN */
+.sp-left {
+  width: 260px;
+  padding: 72px 14px 18px;
+  background: linear-gradient(180deg, #252525, #1f1f1f);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d6d6d6;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.sp-item svg {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.sp-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.sp-item.active {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+/* RIGHT CONTENT – pulled UP */
+.sp-right {
+  flex: 1;
+  padding: 44px 36px 28px;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.sp-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sp-right::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+
+.sp-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  margin-top: -4px;
+}
+
+.sp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sp-muted {
+  color: #a9a9a9;
+  font-size: 13px;
+}
+
+.sp-accent-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34,197,94,0.6);
+}
+
+.sp-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 22px 0;
+}
+
+.sp-play {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.sp-play:hover {
+  background: rgba(255,255,255,0.22);
+  transform: scale(1.05);
+}
+
+/* Toggle base */
+.sp-toggle {
+  width: 38px;
+  height: 20px;
+  border-radius: 999px;
+  background: #555;
+  position: relative;
+  opacity: 0.7;
+}
+
+/* Green ON, locked */
+.sp-toggle-green {
+  background: #22c55e;
+  opacity: 1;
+}
+.sp-toggle-green::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #22c55e99;
+}
+
+/* Locked style (not clickable) */
+.sp-toggle-locked {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(0.1);
+}
+
+/* Default toggle (off) */
+.sp-toggle:not(.sp-toggle-green)::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 2px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Playing state for Play button */
+.sp-play.playing {
+  background: #22c55e;
+  color: #fff;
+  border-color: #22c55e;
+  cursor: wait;
+}
+/* =========================
+   ACCENT SECTIONS
+========================= */
+
+.sp-row-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.sp-accent-row {
+  display: flex;
+  gap: 14px;
+}
+
+/* =========================
+   ACCENT BUTTONS
+========================= */
+
+.sp-accent-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover */
+.sp-accent-btn:hover {
+  transform: scale(1.15);
+}
+
+/* =========================
+   ACTIVE RING (COLOR-AWARE)
+========================= */
+
+.sp-accent-btn.active::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.sp-accent-btn.green {
+  background: #4caf50;
+  color: #4caf50;
+}
+
+.sp-accent-btn.blue {
+  background: #2196f3;
+  color: #2196f3;
+}
+
+.sp-accent-btn.yellow {
+  background: #ffc107;
+  color: #ffc107;
+}
+
+.sp-accent-btn.dark {
+  background: #484747;
+  color: #6b6b6b;
+}
+
+/* =========================
+   COLORS
+========================= */
+
+.sp-accent-btn.green {
+  background: #4caf50;
+}
+
+.sp-accent-btn.blue {
+  background: #2196f3;
+}
+
+.sp-accent-btn.yellow {
+  background: #ffc107;
+}
+
+.sp-accent-btn.dark {
+  background: #484747;
+}
+
+/* =========================
+   MOBILE FRIENDLY
+========================= */
+
+@media (max-width: 768px) {
+  .sp-accent-row {
+    gap: 18px;
+  }
+
+  .sp-accent-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+/* =========================
+   DARK SCROLLBAR — SETTINGS
+========================= */
+
+.sp-right {
+  overflow-y: auto;
+  scrollbar-width: thin;              /* Firefox */
+  scrollbar-color: #3a3a3a #151515;   /* thumb track */
+}
+.sp-right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sp-right::-webkit-scrollbar-track {
+  background: #151515;
+  border-radius: 10px;
+}
+
+.sp-right::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.sp-right::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 🔊 SPEAKING ANIMATION */
+.sp-play.speaking {
+  background: #2ecc71;
+  color: #000;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(46, 204, 113, 0.6); }
+  50% { box-shadow: 0 0 14px rgba(46, 204, 113, 0.9); }
+  100% { box-shadow: 0 0 0 rgba(46, 204, 113, 0.6); }
+}
+
+/* 🔒 LOCKED (no visual state) */
+.sp-toggle.locked {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ✅ TOGGLE ON */
+.sp-toggle.on {
+  background: #2ecc71;
+}
+
+.sp-toggle.on::after {
+  transform: translateX(18px);
+  box-shadow: 0 0 6px rgba(46,204,113,0.8);
+}
+
+/* 🔕 TOGGLE OFF */
+.sp-toggle.off {
+  background: #555;
+}
+
+.sp-toggle.off::after {
+  transform: translateX(0);
+}
+
+.sp-play svg {
+  vertical-align: middle;
+}
+
+.sp-lock-icon {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+.sp-lock-icon svg {
+  display: inline;
+  vertical-align: middle;
+}
+
+.sp-row .sp-toggle {
+  margin-left: 0;
+  margin-right: 0;
+}
+.sp-row .sp-lock-icon {
+  margin-left: 8px;
+}
+
+/* For tighter alignment on the Female Voice row only */
+.sp-row span + .sp-toggle + .sp-lock-icon {
+  margin-left: 10px;
+}
+.sp-row span + .sp-toggle {
+  margin-left: 0;
+}
+
+/* Use a flex row for Female Voice row for tight grouping */
+.sp-row.female-voice-row {
+  gap: 0;
+}
+
+.sp-row.female-voice-row .sp-toggle {
+  margin-left: 390px;
+}
+
+/* =========================
+   PERSONALIZATION NOTE
+========================= */
+
+.sp-note {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #b0b0b0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+/* =========================
+   ⚡ DATA CONTROLS — PRO GRADE
+========================= */
+
+.sp-data-btn {
+  width: 100%;
+  padding: 15px 18px;
+  margin-bottom: 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.015)
+    );
+  color: #f5f5f5;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+
+  font-size: 14.2px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.45),
+    inset 0 0 0.5px rgba(255,255,255,0.22);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hover — soft lift */
+.sp-data-btn:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.075),
+      rgba(255,255,255,0.035)
+    );
+  border-color: rgba(255,255,255,0.22);
+
+  transform: translateY(-1.5px);
+  box-shadow:
+    0 16px 42px rgba(0,0,0,0.65),
+    inset 0 0 0.5px rgba(255,255,255,0.35);
+}
+
+/* Active — physical press */
+.sp-data-btn:active {
+  transform: translateY(0.5px) scale(0.985);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.55),
+    inset 0 0 0.5px rgba(255,255,255,0.18);
+}
+
+/* Disabled */
+.sp-data-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================
+   🚨 DANGER ACTIONS
+========================= */
+
+.sp-data-btn.danger {
+  color: #ffbcbc;
+  border-color: rgba(255,90,90,0.45);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,70,70,0.08),
+      rgba(255,70,70,0.03)
+    );
+}
+
+.sp-data-btn.danger:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,90,90,0.14),
+      rgba(255,90,90,0.06)
+    );
+  border-color: rgba(255,110,110,0.65);
+
+  box-shadow:
+    0 18px 46px rgba(255,80,80,0.25),
+    0 0 0 1px rgba(255,80,80,0.15) inset;
+}
+
+/* =========================
+   🔄 LOADER — PREMIUM FEEL
+========================= */
+
+.sp-loader {
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: #ffffff;
+
+  animation: spSpin 0.7s cubic-bezier(0.55, 0.1, 0.45, 0.9) infinite;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+}
+
+@keyframes spSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================
+   ✨ MICRO-DETAIL POLISH
+========================= */
+
+.sp-data-btn span {
+  white-space: nowrap;
+}
+
+/* subtle separator spacing */
+.sp-data-btn + .sp-data-btn {
+  margin-top: 2px;
+}
+
+/* =========================
+   🧠 DATA CONTROL USAGE TEXT
+========================= */
+
+.sp-data-usage {
+  margin: -6px 0 16px;
+  padding-left: 2px;
+
+  font-size: 12.8px;
+  line-height: 1.55;
+  color: #a8a8a8;
+
+  opacity: 0.9;
+}
+
+/* Slight emphasis for destructive action */
+.sp-data-usage.danger {
+  color: #ffb0b0;
+}
+
+/* Smooth visual grouping */
+.sp-data-btn + .sp-data-usage {
+  animation: fadeInUp 0.25s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   💾 STORAGE SECTION
+========================= */
+
+.sp-storage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+/* Single storage row */
+.sp-storage-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.02)
+  );
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.45),
+    inset 0 0 0.5px rgba(255,255,255,0.2);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hover – subtle lift */
+.sp-storage-item:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.075),
+    rgba(255,255,255,0.035)
+  );
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-1px);
+}
+
+/* Text container */
+.sp-storage-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 75%;
+}
+
+/* Key */
+.sp-storage-key {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+  word-break: break-all;
+}
+
+/* Value */
+.sp-storage-value {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #b8b8b8;
+  word-break: break-all;
+  opacity: 0.95;
+}
+
+/* Delete button */
+.sp-storage-delete {
+  padding: 7px 14px;
+  border-radius: 999px;
+
+  font-size: 12.5px;
+  font-weight: 500;
+
+  background: rgba(255,70,70,0.1);
+  color: #ffbcbc;
+
+  border: 1px solid rgba(255,90,90,0.4);
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.sp-storage-delete:hover {
+  background: rgba(255,90,90,0.18);
+  border-color: rgba(255,110,110,0.65);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,90,90,0.35);
+}
+
+.sp-storage-delete:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   🧹 CLEAR ALL BUTTON
+========================= */
+
+.sp-btn {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,70,70,0.1),
+      rgba(255,70,70,0.04)
+    );
+
+  color: #ffd6d6;
+  font-size: 14px;
+  font-weight: 500;
+
+  border: 1px solid rgba(255,90,90,0.45);
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 32px rgba(255,70,70,0.25),
+    inset 0 0 0.5px rgba(255,255,255,0.25);
+
+  transition:
+    background 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+.sp-btn:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,90,90,0.16),
+      rgba(255,90,90,0.07)
+    );
+  transform: translateY(-1.5px);
+  box-shadow:
+    0 18px 46px rgba(255,80,80,0.35);
+}
+
+.sp-btn:active {
+  transform: translateY(0.5px) scale(0.98);
+}
+
+/* =========================
+   📱 MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width: 768px) {
+  .sp-storage-text {
+    max-width: 100%;
+  }
+
+  .sp-storage-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sp-storage-delete {
+    align-self: flex-end;
+  }
+}
+
+/* =========================
+   🤖 MODEL INFO POLISH
+========================= */
+
+.sp-note strong {
+  color: #e5e5e5;
+}
+
+.sp-note + .sp-note {
+  animation: fadeInUp 0.25s ease both;
+}

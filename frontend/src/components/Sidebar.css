@@ -1,0 +1,571 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: #0b0b0b;
+  border-right: 1px solid rgba(250, 250, 250, 0.122);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  z-index: 2000;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 4px;
+  margin-bottom: 14px;
+}
+
+.sidebar-logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.sidebar-logo-img img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.sidebar-logo-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(34,197,94,0.45);
+}
+
+.sidebar-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.193);
+  margin: 10px 0 18px;
+}
+
+.sidebar-section.main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #f1f1f1;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(2px);
+}
+
+.sidebar-item svg {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  color: #888;
+  margin: 6px 8px 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.sidebar-section.chats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-chat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: #ddd;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar-chat svg {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.sidebar-chat:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(2px);
+}
+
+.sidebar-chat.active {
+  background: rgba(255,255,255,0.14);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.174);
+}
+
+.profile-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 14px;
+}
+
+.profile-plan {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.logout-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.05);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  z-index: 1500;
+}
+
+.sidebar-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(255,255,255,0.18);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-overlay,
+  .sidebar-close-btn {
+    display: none;
+  }
+}
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-left: 4px;
+  margin-bottom: 19px;
+}
+
+.sidebar-name-img {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  margin-left: 04px;
+  margin-top: 10px;
+}
+
+.sidebar-name-img img {
+  height: 110%;
+  object-fit: contain;
+  opacity: 0.95;
+}
+/* 🔽 BOTTOM PROFILE DROPDOWN */
+.profile-dropdown.bottom {
+  position: absolute;
+  bottom: 90px; /* was 64px, now 90px for more space above bottom */
+  left: 12px;
+
+  width: calc(100% - 24px);
+  background: #121212;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+
+  padding: 8px;
+  z-index: 2500;
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,0.6),
+    inset 0 0 0.5px rgba(255,255,255,0.25);
+}
+
+@media (max-width: 600px) {
+  .profile-dropdown.bottom {
+    bottom: 90px; /* match PC, bring up equally */
+  }
+}
+
+/* PROFILE DROPDOWN ITEMS */
+.profile-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 8px;
+
+  font-size: 13.5px;
+  color: #e6e6e6;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.profile-dd-item:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* DIVIDER */
+.profile-dd-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 6px 0;
+}
+
+/* LOGOUT COLOR */
+.profile-dd-item.logout {
+  color: #ffb4b4;
+}
+
+.profile-dd-item.logout:hover {
+  background: rgba(255,60,60,0.15);
+}
+/* 🔥 BOTTOM PROFILE HOVER BOX */
+.sidebar-bottom {
+  position: relative;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* hover = boxed look */
+.sidebar-bottom:hover {
+  background: rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.15),
+    0 6px 20px rgba(0,0,0,0.45);
+}
+
+/* subtle lift */
+.sidebar-bottom:hover .profile-circle {
+  background: #3a3a3a;
+}
+
+/* =========================
+   🖥️ PC SETTINGS MODAL (ChatGPT style)
+========================= */
+
+.settings-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: overlayFadeIn 0.25s ease forwards;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* MODAL CARD */
+.settings-modal {
+  width: 92%;
+  max-width: 720px;
+  max-height: 88vh;
+
+  background: #121212;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  overflow-y: auto;
+  position: relative;
+
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.75),
+    inset 0 0 0.5px rgba(255,255,255,0.25);
+
+  animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* CLOSE BUTTON */
+.settings-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: white;
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-modal-close:hover {
+  background: rgba(255,255,255,0.18);
+  transform: rotate(90deg);
+}
+
+/* SCROLLBAR (MATCH CHATGPT) */
+.settings-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.settings-modal::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+}
+
+/* MOBILE SAFETY (disable modal on small screens) */
+@media (max-width: 768px) {
+  .settings-modal-overlay {
+    display: none;
+  }
+}
+
+.profile-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 5000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.profile-panel {
+  width: 100%;
+  max-width: 420px;
+  background: #121212;
+  border-radius: 16px 16px 0 0;
+  padding: 18px 16px 20px;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.6);
+  animation: profileSlideUp 0.25s ease;
+  position: relative;
+}
+
+@keyframes profileSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.profile-panel-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #1e1e1e;
+  border: 1px solid #2b2b2b;
+  color: #ccc;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-panel-close:hover {
+  background: #2a2a2a;
+  color: white;
+  transform: scale(1.05);
+}
+
+.profile-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #eaeaea;
+  cursor: pointer;
+  font-size: 14.5px;
+  transition: background 0.18s ease;
+}
+
+.profile-dd-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.profile-dd-item.logout {
+  color: #ff6b6b;
+}
+
+.profile-dd-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
+}
+
+@media (min-width: 900px) {
+  .profile-panel-overlay {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2px;   /* 👈 slightly more down than 6px */
+  }
+
+  .profile-panel {
+    border-radius: 16px 16px 0 0;
+    max-width: 360px;
+    margin-bottom: 0;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .profile-panel-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.35); /* keep slight dim, no blur */
+  }
+}
+
+/* =========================
+   🧠 SIDEBAR APP NAME
+========================= */
+
+.sidebar-name-text {
+  margin-left: 10px;
+  margin-top: 2px;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  color: #f5f5f5;
+
+  white-space: nowrap;
+  user-select: none;
+
+  background: linear-gradient(
+    90deg,
+  rgba(255, 255, 255, 0.347)
+  );
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: nameShine 6s linear infinite;
+}
+
+/* subtle animated shine */
+@keyframes nameShine {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
