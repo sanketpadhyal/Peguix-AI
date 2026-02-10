@@ -86,6 +86,11 @@ This repository is shared for **learning, demonstration, and development referen
 
 ---
 
+### 📅 Project Information
+Created: Jan 31, 2026
+
+---
+
 ## 🛠️ How to Run Locally
 
 ### 1️⃣ Install Ollama
